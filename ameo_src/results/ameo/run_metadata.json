@@ -1,0 +1,60 @@
+{
+  "input_after_exact_dedup": 3998,
+  "invalid_salary_rows_removed": 0,
+  "gpa_rows_multiplied_by_10": 12,
+  "retained_rows": 3998,
+  "missing_by_feature": {
+    "10percentage": 0,
+    "12percentage": 0,
+    "collegeGPA": 0,
+    "CollegeTier": 0,
+    "CollegeCityTier": 0,
+    "GraduationYear": 1,
+    "conscientiousness": 0,
+    "agreeableness": 0,
+    "extraversion": 0,
+    "nueroticism": 0,
+    "openess_to_experience": 0,
+    "English": 0,
+    "Logical": 0,
+    "Quant": 0,
+    "Domain": 246,
+    "ComputerProgramming": 868,
+    "ElectronicsAndSemicon": 2854,
+    "ComputerScience": 3096,
+    "MechanicalEngg": 3763,
+    "ElectricalEngg": 3837,
+    "TelecomEngg": 3624,
+    "CivilEngg": 3956,
+    "Degree": 0,
+    "Specialization": 0,
+    "CollegeState": 0
+  },
+  "source": "https://zenodo.org/records/45735",
+  "sha256": "7c0fdb5a745317460d4ff767e15c2c057c0d960234445496ab9f0b763eae59fd",
+  "threshold_inr": 300000,
+  "seed": 42,
+  "train_rows": 3198,
+  "test_rows": 800,
+  "train_positive_rate": 0.5340838023764853,
+  "test_positive_rate": 0.53375,
+  "full_model_selected_by_train_cv_auc": "LogisticRegression",
+  "dummy_test": {
+    "accuracy": 0.53375,
+    "balanced_accuracy": 0.5,
+    "f1": 0.6960065199674002,
+    "auc": 0.5
+  },
+  "versions": {
+    "python": "3.14.2",
+    "numpy": "2.4.2",
+    "pandas": "3.0.0",
+    "sklearn": "1.9.0"
+  },
+  "argv": [
+    "--data",
+    "train.xlsx",
+    "--out",
+    "results/ameo"
+  ]
+}
