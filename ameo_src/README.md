@@ -71,3 +71,21 @@ Do not compare raw Gini percentages against the synthetic model to claim persona
 `verified_run/` contains outputs generated here using the original Zenodo train.xlsx and the default cutoff/seed. This is a completed exploratory run, not a forecast that personality should improve performance. To reproduce, use the source hash and package versions in run_metadata.json. No raw workbook is bundled. The source data dictionary was inspected to verify annual CTC units, mixed GPA scales, personality standardization, and optional assessment missing codes.
 
 Source: Nisar, Srikant, Aggarwal. AMEO – Aspiring Minds' Employment Outcomes 2015. DOI: https://doi.org/10.5281/zenodo.45735
+
+## Robustness checks (`ameo_robustness.py`)
+
+Run after the main pipeline (about 2 minutes):
+
+```bash
+python ameo_robustness.py --data train.xlsx --out results/robustness
+```
+
+It reuses the same cleaning and feature sets and writes to `results/robustness/`:
+
+- `repeated_cv_deltas.csv`: 10x5 repeated CV on all rows. Paired (with Big Five minus without) deltas for AUC, F1, log-loss and Brier score, tested with the Nadeau-Bengio corrected resampled t-test. For log-loss, Brier and MAE, negative deltas mean improvement.
+- `nested_logit_tests.csv`: likelihood-ratio test of the 5 Big Five terms in an unpenalized logistic regression, plus ΔAIC, ΔBIC and Δ McFadden pseudo-R².
+- `bigfive_odds_ratios.csv`: odds ratio per 1 SD of each trait in the C + Big Five logit, for each cutoff.
+- Cutoff sensitivity: INR 300k (the sample median) is the primary cutoff. The quantile cutoffs (not bottom 25%, top 25%, top 10%) are pre-declared alternatives and are not tuned.
+- `log_salary_nested_tests.csv` and `bigfive_log_salary_coefs.csv`: continuous log(CTC) outcome. Gives ΔR², a joint Wald test with HC3 robust standard errors, and % salary change per 1 SD of each trait.
+
+The inference design pools categories with fewer than 30 rows and drops binary columns with fewer than 30 ones. It also drops near-collinear controls (R² > 0.99); in AMEO, `Degree = mca` and Specialization "computer application" differ by one person. The dropped columns are listed in the output, and none of them is a Big Five trait.
