@@ -1,0 +1,39 @@
+{
+  "rows": 3998,
+  "cleaning_audit": {
+    "input_after_exact_dedup": 3998,
+    "invalid_salary_rows_removed": 0,
+    "gpa_rows_multiplied_by_10": 12,
+    "retained_rows": 3998
+  },
+  "cutoffs_inr": {
+    "ge_300000_primary": 300000.0,
+    "not_bottom25_ge_180000": 180000.0,
+    "top25_ge_370000": 370000.0,
+    "top10_ge_480000": 480000.0
+  },
+  "positive_rates": {
+    "ge_300000_primary": 0.5340170085042522,
+    "not_bottom25_ge_180000": 0.8066533266633317,
+    "top25_ge_370000": 0.25437718859429714,
+    "top10_ge_480000": 0.10605302651325663
+  },
+  "cv": "10x5 repeated (stratified for classification)",
+  "seed": 42,
+  "ttest": "Nadeau-Bengio corrected resampled t-test, 95% CI",
+  "runtime_seconds": 97,
+  "versions": {
+    "python": "3.12.7",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0"
+  },
+  "argv": [
+    "--data",
+    "train.xlsx",
+    "--out",
+    "results/robustness"
+  ]
+}
